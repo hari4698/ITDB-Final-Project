@@ -7,7 +7,7 @@ Members
 
 ## Downloading the Datasets
 
-All the required datasets can be found in the GitHub repository under the folder "Datasets".
+All the required datasets can be found in the GitHub repository under the folder "Dataset".
 
 ## Setting up the System
 

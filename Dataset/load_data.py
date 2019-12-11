@@ -4,6 +4,8 @@ import math
 import psycopg2
 from io import StringIO
 from sqlalchemy import create_engine
+from pymongo import MongoClient
+import simplejson as json
 
 def normalizeColumnsForDb(df,columndf,reqcolumndf):
     df=df[columndf].copy()
@@ -98,3 +100,10 @@ df7.to_sql('airquality', engine, if_exists='append')
 df8.to_sql('statecodetoname', engine, if_exists='append')
 df9.to_sql('plantidtocounty', engine, if_exists='append')
 df10.to_sql('countytostate', engine, if_exists='append')
+
+with open('./electricity_consumption.json') as f:
+    data = json.load(f)
+client = MongoClient("mongodb://localhost:27017/")
+plantDB = client["powergrid"]
+consumption_collection = plantDB["electricity_consumption"]
+consumption_collection.insert_many(data)
